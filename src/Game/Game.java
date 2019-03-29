@@ -10,7 +10,7 @@ import menus.MainMenu;
 
 public class Game extends Canvas implements Runnable{
 	public boolean isRunning = true;
-	private double fps = 1000000000.0/30.0;
+	private double fps = 1000000000.0/60.0;
 	private double tick = 1000000000.0/30.0;
 	private BufferStrategy buffer;
 	private Graphics2D g;
@@ -21,7 +21,7 @@ public class Game extends Canvas implements Runnable{
 		game.start();	
 	}
 	
-	
+
 	public void render() {
 		buffer =  getBufferStrategy();
 		if(buffer == null) {
@@ -29,21 +29,29 @@ public class Game extends Canvas implements Runnable{
 			createBufferStrategy(3);
 			return;
 		}
+		//set the painter
 		g = (Graphics2D) buffer.getDrawGraphics();
+		//clear the canvas by erasing previous drawings for next render
+		g.clearRect(0, 0, gameState.getCanvas().getWidth(), gameState.getCanvas().getHeight());
+		//Pass the painter to gamestate's render
 		gameState.render(g);
+		//dispose the painter
+		g.dispose();
+		//Show the buffer
+		buffer.show();
 	}
 	
-	public  void tick() {
-		
+	public void tick() {
+		//update the game logic
+		gameState.tick();
 	}
 
 
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		MainMenu mainMenu = new MainMenu();
-		mainMenu.setCanvas(this);
-		mainMenu.init();
+		gameState.setCanvas(this);
+		gameState.init();
 		double fpsDelta = 0.0;
 		double tickDelta = 0.0;
 		long fpsCounter = 0;

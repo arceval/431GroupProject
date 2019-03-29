@@ -1,5 +1,6 @@
 package menus;
 
+import java.awt.Canvas;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -12,16 +13,15 @@ import javax.swing.JPanel;
 public class MainMenu{
 	public final int width = 505;
 	public final int height = 530;
-	private JPanel window;
 	private JFrame frame;
+	//must be inited before
+	private Canvas window;
 	private BufferedImage mainMenuImage;
 	//To be called when program runs
 	public void init() {
-		//empty panel for drawing content
-		window = new JPanel();
-		//set the panel size
+		//set the canvas size
 		window.setSize(width, height);
-		//empty frame for the panel to be placed in
+		//empty frame for the canvas to be placed in
 		frame = new JFrame();
 		//close the program when window is closed
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -37,7 +37,9 @@ public class MainMenu{
 		//paint main menu
 		paintMainMenu();
 	}
-	
+	public void setCanvas(Canvas canvas) {
+		this.window = canvas;
+	}
 	private void paintMainMenu() {
 		try {
 			//set image
@@ -52,7 +54,11 @@ public class MainMenu{
 		}
 	}
 	//get panel
-	public JPanel getPanel() {
+	public Canvas getCanvas() {
 		return this.window;
+	}
+	
+	public void render(Graphics2D g) {
+		g.drawImage(mainMenuImage, null, 0, 0);
 	}
 }

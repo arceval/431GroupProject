@@ -3,7 +3,7 @@ package Game;
 import java.util.ArrayList;
 import java.util.HashMap;
 //A square of the game board
-public class Square {
+public class Square {	
 	//Number of Players
 	private int numPlayers;
 	//List of player IDs
@@ -12,11 +12,14 @@ public class Square {
 	private float penThickness;
 	//Amount Filled status (each index holds a players current territory)
 	private HashMap<String, Float> status = new HashMap<String, Float>();
+	//size of square
+	private int width;
+	private int height;
 	//Area of territory in square before taken over
 	private float territoryLimit;
 	
 	//Built after number of players are known
-	public Square(ArrayList<String> playerIDs, int numPlayers, float territoryLimit, float penThickness) {
+	public Square(ArrayList<String> playerIDs, int numPlayers, float territoryLimit, float penThickness, int sizeOfSquareSide) {
 		//set number of players
 		this.numPlayers = numPlayers;
 		//set the player IDs to local list
@@ -30,7 +33,9 @@ public class Square {
 		}
 		//set territory limit of the square
 		this.territoryLimit = territoryLimit;
-			
+		//set size of square
+		this.width = sizeOfSquareSide;
+		this.height = sizeOfSquareSide;
 		
 	}
 	

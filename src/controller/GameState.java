@@ -8,7 +8,7 @@ import java.util.LinkedHashMap;
 
 import javax.swing.JFrame;
 
-import constaints.Drawable;
+import constraints.Drawable;
 import menus.MainMenu;
 
 //For changing game state ex: menu transitions

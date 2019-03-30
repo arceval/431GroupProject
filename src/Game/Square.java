@@ -7,7 +7,7 @@ import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import constaints.Drawable;
+import constraints.Drawable;
 import controller.GameState;
 //A square of the game board
 public class Square extends Drawable{	
@@ -53,6 +53,7 @@ public class Square extends Drawable{
 	
 	//Add to status
 	public void addTerritory(String playerID) {
+		//ask the 
 		//Add territory to this square corresponding to playerID of amount penThickness 
 		status.replace(playerID, GameState.penThickness);
 	}

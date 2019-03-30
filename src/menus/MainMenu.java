@@ -10,7 +10,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import constaints.Drawable;
+import constraints.Drawable;
 
 public class MainMenu extends Drawable{
 	//Image for main menu

@@ -3,7 +3,7 @@ package Game;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
-import constaints.Drawable;
+import constraints.Drawable;
 import controller.GameState;
 
 public class GameBoard extends Drawable{

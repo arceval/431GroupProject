@@ -3,18 +3,22 @@ package controller;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 import javax.swing.JFrame;
 
+import Game.Player;
 import constraints.Drawable;
 import menus.MainMenu;
 
 //For changing game state ex: menu transitions
 public class GameState extends Drawable{
-	//Ids of players
-	public static ArrayList<String> playerIDs = new ArrayList<String>();
+	//Host Flag
+	private static boolean Host = false;
+	//Ids of players, Initialized when everybody is connected
+	public static ArrayList<Player> players;
 	//The 3 other players
 	public static int numberOfPlayers = 3;
 	//Territory limit of a square before it belongs to a player: in percentage out of 100 
@@ -30,6 +34,11 @@ public class GameState extends Drawable{
 	//Available classes
 	MainMenu mainMenu = new MainMenu();
 
+	//set playerIDs
+	public void setPlayers() {
+		
+	}
+	
 	//Available States
 	private ArrayList<String> availableStates;
 	//current state
@@ -109,7 +118,17 @@ public class GameState extends Drawable{
 		}
 
 	}
-	
+	public static void sendMessage(String s) {
+		//check if we are host or client
+		if(Host) {
+			//Perform to our board
+			
+		}else if(!Host) {
+			//as a client we have to let host know
+			//pass this message to the ConnectionEndpoint
+
+		}
+	}
 	public void setGameState(String state) {
 		if(availableStates.contains(state)) {
 			currentState = state;

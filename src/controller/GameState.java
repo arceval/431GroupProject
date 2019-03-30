@@ -8,15 +8,25 @@ import java.util.LinkedHashMap;
 
 import javax.swing.JFrame;
 
+import constaints.Drawable;
 import menus.MainMenu;
 
 //For changing game state ex: menu transitions
-public class GameState {
+public class GameState extends Drawable{
+	//Ids of players
+	public static ArrayList<String> playerIDs = new ArrayList<String>();
+	//The 3 other players
+	public static int numberOfPlayers = 3;
+	//Territory limit of a square before it belongs to a player: in percentage out of 100 
+	public static float territoryLimit = 25;
+	//Pen Thickness
+	public static float penThickness = 1;
+	//Size of Game Window
 	public final int width = 505;
 	public final int height = 530;
 	private JFrame frame;
 	private Canvas window;
-
+	
 	//Available classes
 	MainMenu mainMenu = new MainMenu();
 

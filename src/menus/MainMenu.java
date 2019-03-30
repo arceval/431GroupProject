@@ -10,10 +10,12 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class MainMenu{
+import constaints.Drawable;
 
+public class MainMenu extends Drawable{
+	//Image for main menu
 	private BufferedImage mainMenuImage;
-	//To be called when program runs
+
 	public MainMenu() {
 		try {
 
@@ -29,10 +31,16 @@ public class MainMenu{
 	
 	
 	public void render(Graphics2D g) {
+		//Draw the main menu
 		g.drawImage(mainMenuImage, null, 0, 0);
 	}
-	
+
+
+
+	@Override
 	public void tick() {
 		
 	}
+	
+
 }

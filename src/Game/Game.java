@@ -10,8 +10,8 @@ import menus.MainMenu;
 
 public class Game extends Canvas implements Runnable{
 	public boolean isRunning = true;
-	private double fps = 1000000000.0/60.0;
-	private double tick = 1000000000.0/30.0;
+	private final double fps = 1000000000.0/60.0;
+	private final double tick = 1000000000.0/30.0;
 	private BufferStrategy buffer;
 	private Graphics2D g;
 	private GameState gameState = new GameState();

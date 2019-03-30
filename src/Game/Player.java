@@ -3,8 +3,13 @@ package Game;
 public class Player {
 	//Player Id
 	String playerId = "";
-	
-	public Player(String playerID) {
+	//player color
+	String playerColor = "";
+
+	public Player(String playerID, String color) {
 		this.playerId = playerID;
+		this.playerColor = color;
 	}
+	
+	public String getPlayerID() {return this.playerId;}
 }

@@ -74,8 +74,8 @@ public class Game extends Canvas implements Runnable{
 				fpsCounter++;
 			}
 			if(timer >= 1000000000) {
-				System.out.println("Fps: " + fpsCounter);
-				System.out.println("Ticks: " + tickCounter);
+//				System.out.println("Fps: " + fpsCounter);
+//				System.out.println("Ticks: " + tickCounter);
 				fpsCounter = 0;
 				tickCounter = 0;
 				timer = 0;

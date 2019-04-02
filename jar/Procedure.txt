@@ -1,0 +1,9 @@
+1. Open jar and select host a game 
+	-territory required and pensize can only be changed by modifying GameState.java
+
+2. Open jar and select join for each player
+	ports start at 90 and must be in order :(
+ex:joining of all players
+	192.168.0.23:90 + enter
+	192.168.0.23:91 + enter
+	192.168.0.23:92 + enter

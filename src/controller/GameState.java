@@ -17,6 +17,7 @@ import constraints.Drawable;
 import menus.ClientMenu;
 import menus.HostMenu;
 import menus.MainMenu;
+import menus.ResultMenu;
 import menus.WaitMenu;
 
 //For changing game state ex: menu transitions
@@ -61,6 +62,7 @@ public class GameState extends Drawable{
 	private	GameBoard gameBoard = new GameBoard(this);
 	private HostMenu hostMenu;
 	private ClientMenu clientMenu;
+	private ResultMenu resultMenu;
 	private WaitMenu waitMenu = new WaitMenu();
 	//Available States
 	private ArrayList<String> availableStates;
@@ -73,12 +75,14 @@ public class GameState extends Drawable{
 		players = new ArrayList<Player>();
 		hostMenu = new HostMenu(this,gameBoard);
 		clientMenu = new ClientMenu(this,gameBoard);
+		resultMenu = new ResultMenu(this,gameBoard);
 		//set states here
 		availableStates.add("MainMenu");
 		availableStates.add("GameBoard");
 		availableStates.add("HostMenu");
 		availableStates.add("ClientMenu");
 		availableStates.add("WaitMenu");
+		availableStates.add("ResultMenu");
 
 
 	}
@@ -186,8 +190,8 @@ public class GameState extends Drawable{
 	//For client and Host (Menu Switching + Reading received Messages from endpoint)
 	public void tick() {
 		//debug
-		System.out.println("TerritoryReq: " + this.territoryLimit);
-		System.out.println("PenThickness " + this.penThickness);
+//		System.out.println("TerritoryReq: " + this.territoryLimit);
+//		System.out.println("PenThickness " + this.penThickness);
 		switchMethod("tick", null);
 		//Constantly read received messages from endpoints
 		for(ConnectionEndpoint connection : connections) {
@@ -224,6 +228,11 @@ public class GameState extends Drawable{
 				currentState = "WaitMenu";
 				waitMenu.render(g);
 				break;
+			case "ResultMenu":
+				currentState = "ResultMenu";
+				resultMenu.render(g);
+				break;
+				
 			default: 
 				currentState = "MainMenu";
 				break;
@@ -256,6 +265,11 @@ public class GameState extends Drawable{
 				currentState = "WaitMenu";
 				waitMenu.tick();
 				break;
+			case "ResultMenu":
+				currentState = "ResultMenu";
+				resultMenu.tick();
+				break;
+				
 			default: 
 				currentState = "MainMenu";
 				break;

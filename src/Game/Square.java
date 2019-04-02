@@ -114,9 +114,20 @@ public class Square extends Drawable{
 	public void setOccupied(boolean flag) {
 		this.occupied = flag;
 	}
+	//get occupied flag
+	public boolean isOccupied() {return this.occupied;}
+	
 	//set occupied id
 	public void setOccupiedPlayerID(String s) {
 		this.occupiedPlayerID = s;
+	}
+	//get occupied color
+	public Color getOccupiedPlayerColor() {
+		return this.occupiedPlayerColor;
+	}
+	//get occupied id
+	public String getOccupiedPlayerID() {
+		return this.getOccupiedPlayerID();
 	}
 	//getter for number of total pixels of square
 	public int getPixelCount() {

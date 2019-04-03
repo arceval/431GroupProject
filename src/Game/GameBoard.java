@@ -97,13 +97,15 @@ public class GameBoard extends Drawable implements MouseListener, MouseMotionLis
 				//*note there is one white square outside the window, ignore this square
 				if(results.get(square.getOccupiedPlayerColor())==null && !square.getOccupiedPlayerColor().equals(Color.white)) {
 					results.put(square.getOccupiedPlayerColor(), 1);
+//					System.out.println("Gameboard: added init " + square.getOccupiedPlayerColor().toString());
 				}else {
 					//error check white color
 					if(square.getOccupiedPlayerColor().equals(Color.white)) {
-						
+//						System.out.println("Gameboard: ignored white " + square.getOccupiedPlayerColor().toString());
 					}else {
 						//color exists, increment by 1
 						results.put(square.getOccupiedPlayerColor(), results.get(square.getOccupiedPlayerColor())+1);
+//						System.out.println("Gameboard: added " + square.getOccupiedPlayerColor().toString());
 					}
 
 				}

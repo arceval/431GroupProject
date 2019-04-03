@@ -61,7 +61,16 @@ public class ResultMenu extends Drawable{
 						//match
 						g.setColor(winners.get(i));
 						g.setFont(new Font("Arial", Font.BOLD, 24));
-						g.drawString((i+1) + ". " + player.getPlayerID() + "     "+ String.valueOf(values.get(i)), 105, 150+spacing*i);
+						//bug fix
+						if(i >= values.size()) {
+//							g.drawString(values.size() + ". " + player.getPlayerID() + "     "+ String.valueOf(values.get(values.size()-1)), 105, 150+spacing*(values.size()-1));
+							g.drawString(player.getPlayerID(), 105, 150+spacing*(values.size()-1));
+
+						}else {
+//							g.drawString((i+1) + ". " + player.getPlayerID() + "     "+ String.valueOf(values.get(i)), 105, 150+spacing*i);
+							g.drawString(player.getPlayerID(), 105, 150+spacing*i);
+
+						}
 						break;
 					}
 				}
@@ -98,6 +107,7 @@ public class ResultMenu extends Drawable{
 					//find this keys count position
 					if(results.get(key) == values.get(i)) {
 						//match found, place color into winner list at correct position
+						System.out.println(i+". Added winner: " + key.toString());
 						winners.add(i, key);
 						break;
 					}

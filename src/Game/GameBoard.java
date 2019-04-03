@@ -8,6 +8,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 import constraints.Drawable;
 import controller.GameState;
@@ -34,6 +35,7 @@ public class GameBoard extends Drawable implements MouseListener, MouseMotionLis
     private Color myColor;
     private double diameter;
 	private GameState GameState;
+	private LinkedHashMap<Color, Integer> results = new LinkedHashMap<Color,Integer>();
 	public GameBoard(GameState GameState) {
 		//set gamestate ref
 		this.GameState = GameState;
@@ -78,6 +80,38 @@ public class GameBoard extends Drawable implements MouseListener, MouseMotionLis
 
 	@Override
 	public void tick() {
+		//check if game is over
+		boolean gameIsNotOver = false;
+		for(Square square : getSquareList()) {
+			if(!square.isOccupied()) {
+				gameIsNotOver = true;
+				break;
+			}
+		}
+		//game over detected
+		if(!gameIsNotOver) {
+			
+			//tally results
+			for(Square square : getSquareList()) {
+				//check if first time seeing color 
+				//*note there is one white square outside the window, ignore this square
+				if(results.get(square.getOccupiedPlayerColor())==null && !square.getOccupiedPlayerColor().equals(Color.white)) {
+					results.put(square.getOccupiedPlayerColor(), 1);
+				}else {
+					//error check white color
+					if(square.getOccupiedPlayerColor().equals(Color.white)) {
+						
+					}else {
+						//color exists, increment by 1
+						results.put(square.getOccupiedPlayerColor(), results.get(square.getOccupiedPlayerColor())+1);
+					}
+
+				}
+			}
+			//Change to results menu and display results
+			GameState.setCurrentState("ResultMenu");
+		}
+		
 		//set own player color is not set yet
 		if(myColor==null) {
 			//set playerColor
@@ -92,7 +126,10 @@ public class GameBoard extends Drawable implements MouseListener, MouseMotionLis
 			square.tick();
 		}
 	}
-	
+	//getter for results list
+	public LinkedHashMap<Color, Integer> getResults(){
+		return this.results;
+	}
 	//getter for square list
 	public ArrayList<Square> getSquareList(){
 		return this.squareList;

@@ -190,13 +190,8 @@ public class GameState extends Drawable{
 	//For client and Host (Menu Switching + Reading received Messages from endpoint)
 	public void tick() {
 		//debug
-<<<<<<< HEAD
 		//System.out.println("TerritoryReq: " + this.territoryLimit);
 		//System.out.println("PenThickness " + this.penThickness);
-=======
-//		System.out.println("TerritoryReq: " + this.territoryLimit);
-//		System.out.println("PenThickness " + this.penThickness);
->>>>>>> 113a15d52bcbaa6bb1f81527c2d2c144dca85505
 		switchMethod("tick", null);
 		//Constantly read received messages from endpoints
 		for(ConnectionEndpoint connection : connections) {

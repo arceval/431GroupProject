@@ -45,7 +45,7 @@ public class GameState extends Drawable{
 	//Pen Thickness in pixels
 	public String penThickness = "6";
 	//lock timeout in ms
-	public final int timeoutMS = 10000;
+	public final int timeoutMS = 5000;
 	//Size of Game Window
 	public final int width = 503;
 	public final int height = 525;
@@ -186,8 +186,8 @@ public class GameState extends Drawable{
 	//For client and Host (Menu Switching + Reading received Messages from endpoint)
 	public void tick() {
 		//debug
-		System.out.println("TerritoryReq: " + this.territoryLimit);
-		System.out.println("PenThickness " + this.penThickness);
+		//System.out.println("TerritoryReq: " + this.territoryLimit);
+		//System.out.println("PenThickness " + this.penThickness);
 		switchMethod("tick", null);
 		//Constantly read received messages from endpoints
 		for(ConnectionEndpoint connection : connections) {

@@ -129,15 +129,17 @@ public class Square extends Drawable{
 	}
 	@Override
 	public void render(Graphics2D g) {
-		//draw this square
-		drawSquare(g);
 		//fill if occupied
 		if(occupied) {
 			g.setColor(occupiedPlayerColor);
 			g.fill(square);
 			//draw square boarder again
-			drawSquare(g);
 		}
+		if(lock && !occupied){
+			g.setColor(Color.gray);
+			g.fill(square);
+		}
+		drawSquare(g);
 	
 	}
 

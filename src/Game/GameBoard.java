@@ -125,6 +125,18 @@ public class GameBoard extends Drawable implements MouseListener, MouseMotionLis
 					GameState.sendMessage(new Message(GameState.time.toString(),GameState.myPlayerID,square.getSquareID(),"check",GameState.myPlayerID));
 					//update current square interaction
 					currentSquareIndex = square.getSquareID();
+					// Assume we will get approved and start drawing
+					if(squareList.get(currentSquareIndex).getShape().contains(e.getPoint())) {
+						Shape shapeToAdd = new Ellipse2D.Double(e.getX() - radius, e.getY() - radius, diameter, diameter);
+						//check if point does not exist already
+						if(!penHistory.contains(shapeToAdd)) {
+							penHistory.add(shapeToAdd);
+						}else {
+							//debug message
+	//						System.out.println("Ignored point");
+						}
+					}
+		
 				}
 			}
 		
@@ -180,6 +192,9 @@ public class GameBoard extends Drawable implements MouseListener, MouseMotionLis
 				currentSquareIndex = -1;
 			}
 		
+		}else {
+			penHistory.clear();
+			currentSquareIndex = -1;
 		}
 	}
 	@Override

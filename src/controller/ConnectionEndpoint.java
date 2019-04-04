@@ -16,18 +16,23 @@ import Game.GameBoard;
 import Game.Player;
 
 public class ConnectionEndpoint{
-	//Thread for placing messagges in to receive buffer
+	//Thread for placing messages in to receive buffer
 	public class ReceiveThread extends Thread implements Runnable{
+		//Receive buffer to hold received messages
 		private ArrayList<Message> receiveBuffer;
+		//flag for stopping the receive buffer
 		private boolean stopReceiveThread = false;
+		//constructor for receive buffer, pass in stream with arraylist
 		public ReceiveThread(ObjectInputStream inputStream, ArrayList<Message> receiveBuffer) {
 			//receive buffer of client / host passed by reference
 			this.receiveBuffer = receiveBuffer;
 		}
+		//method to stop thread
 		public void stopReceiveThread() {
 			stopReceiveThread = true;
 		}
 		public void run() {
+			//continue to loop until stop flag set to true
 			while(!stopReceiveThread) {
 				//listen for messages and place into buffer
 				try {
@@ -195,14 +200,22 @@ public class ConnectionEndpoint{
 			}
 		}
 	}
+	//socket for server
 	private ServerSocket serverSocket;
+	//socket
 	private Socket socket;
+	//streams for passing messages
 	private ObjectInputStream inputStream;
 	private ObjectOutputStream outputStream;
+	//thread for running receive buffer
 	private ReceiveThread receiveThread;
+	//passed in referenced GameState
 	private GameState GameState;
+	//crash flag
 	private boolean hostCrash = false;
+	//player crash flag
 	private static boolean playerCrash = false;
+	//2nd player crash flag
 	private static boolean playerCrash2 = false;
 	//for updating
 	private GameBoard gameBoard;
@@ -217,6 +230,7 @@ public class ConnectionEndpoint{
 			this.gameBoard = gameBoard;
 			//set socket
 			this.socket = s;
+			//create new streams
 			outputStream = new ObjectOutputStream(s.getOutputStream());
 			inputStream = new ObjectInputStream(s.getInputStream());
 			//initialize receiving thread
@@ -415,18 +429,22 @@ public class ConnectionEndpoint{
 		GameState.setCurrentState("GameBoard");
 	}
 	
-	//Possibly add this to another thread
+	//For sorting messages in the receive buffer
 	public void sortBuffer(){
 		try {
 
-			//selection sort
+			//selection sort algorithm
 			int indexOfCurrent = 0;
 			int indexOfMin = -1;
+			//for every message in receive buffer
 			for(Message message2 : receiveBuffer) {
+				//get the timestamp
 				Instant minTimeStamp = Instant.parse(receiveBuffer.get(indexOfCurrent).getTimeStamp());
+				//compare with every other message, if a message with a lower timestamp is received update minTimeStamp
 				for(int indexOfOther = indexOfCurrent; indexOfOther < receiveBuffer.size(); indexOfOther++) {
 					Message message = receiveBuffer.get(indexOfOther);
 					Instant otherTimeStamp = Instant.parse(message.getTimeStamp());
+					//comparison of timestamp
 					if(otherTimeStamp.compareTo(minTimeStamp) < 0) {
 						indexOfMin = indexOfOther;
 						minTimeStamp = Instant.parse(message.getTimeStamp());

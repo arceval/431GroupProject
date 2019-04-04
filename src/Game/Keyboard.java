@@ -8,11 +8,14 @@ import controller.GameState;
 import menus.ClientMenu;
 
 public class Keyboard implements KeyListener{
+	//enter flag
 private boolean finishedFlag= false;
+//passed in reference
 private GameState GameState;
 public Keyboard(GameState GameState) {
 	this.GameState = GameState;
 }
+//triggers when a key was pressed
 	@Override
 	public void keyPressed(KeyEvent e) {
 		//check if client menu
@@ -45,6 +48,7 @@ public Keyboard(GameState GameState) {
 			}
 			
 		}
+		//listen only when the gameState is at hostmenu
 		if(GameState.currentState.equals("HostMenu")) {
 			//Check if enter was pressed
 			if(e.getKeyCode() == KeyEvent.VK_ENTER) {

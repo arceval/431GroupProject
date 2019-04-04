@@ -20,8 +20,10 @@ import controller.GameState;
 public class MainMenu extends Drawable implements MouseListener{
 	//Image for main menu
 	private BufferedImage mainMenuImage;
+	//Join and host button
 	private Shape joinButton;
 	private Shape hostButton;
+	//Main menu constructor
 	public MainMenu() {
 		try {
 
@@ -60,15 +62,17 @@ public class MainMenu extends Drawable implements MouseListener{
 	}
 
 
-
+	//For registering clicks
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		//make sure we only listen when we're at the main menu
 		if(GameState.currentState.equals("MainMenu")) {
 			//Join Button clicked
 			if(joinButton.contains(e.getPoint())){
 				System.out.println("MainMenu: Switching to Join Menu");
 				//change to Join Menu
 				GameState.currentState = "ClientMenu";
+				//Host button clicked
 			}else if(hostButton.contains(e.getPoint())) {
 				System.out.println("MainMenu: Switching to Host Menu");
 				//change to Host Menu

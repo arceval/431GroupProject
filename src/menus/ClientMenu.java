@@ -32,11 +32,13 @@ public class ClientMenu extends Drawable implements MouseListener{
 	public static String ipInput = "";
 	//client class
 	private Client client;
+	//flag for when Entered was pressed on keyboard
 	public static boolean enter = false;
 	private GameBoard gameBoard;
 	public ClientMenu(GameState GameState, GameBoard gameBoard) {
 		this.GameState = GameState;
 		this.gameBoard = gameBoard;
+		//client object for actual connecting
 		client = new Client(this.GameState, this.gameBoard);
 		try {
 			//set image
@@ -49,6 +51,7 @@ public class ClientMenu extends Drawable implements MouseListener{
 			e.printStackTrace();
 		}
 	}
+	//mouse detection
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		//Listen only if its Client menu rendered
@@ -84,7 +87,7 @@ public class ClientMenu extends Drawable implements MouseListener{
 		// TODO Auto-generated method stub
 		
 	}
-
+	//render method for drawing menu
 	@Override
 	public void render(Graphics2D g) {
 		//Draw the Client menu
@@ -95,7 +98,7 @@ public class ClientMenu extends Drawable implements MouseListener{
 		g.setFont(new Font("Arial", Font.BOLD, 24));
 		g.drawString(ipInput, 174, 300);
 	}
-
+	//tick method for logic
 	@Override
 	public void tick() {
 		//Enter was pressed

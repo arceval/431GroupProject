@@ -40,6 +40,7 @@ public class HostMenu extends Drawable implements MouseListener{
 		this.gameBoard = gameBoard;
 		
 		try {
+			//for host capabilities
 			 host = new Host(GameState, gameBoard);
 			//set image
 			hostMenuImage = ImageIO.read(new File("res/HostMenu.jpg"));
@@ -56,6 +57,7 @@ public class HostMenu extends Drawable implements MouseListener{
 			e.printStackTrace();
 		}
 	}
+	//getter for socket
 	public ServerSocket getServerSocket() {
 		return host.getServerSocket();
 	}
@@ -120,14 +122,16 @@ public class HostMenu extends Drawable implements MouseListener{
 		int spacingBtwnNames = 25;
 		//current index of player
 		int currentCount = 0;
+		//for every player in the current player list
 		for(Player player : GameState.getPlayers()) {
+			//render their player tags
 			g.setFont(new Font("Arial", Font.BOLD, 17));
 			g.setColor(player.getPlayerColor());
 			g.drawString(player.getPlayerID(), 170, 420+(spacingBtwnNames*currentCount));
 			currentCount++;
 		}
 	}
-
+//for logic updates
 	@Override
 	public void tick() {
 		//Perform Host if first run

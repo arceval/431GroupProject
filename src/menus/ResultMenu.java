@@ -27,7 +27,9 @@ public class ResultMenu extends Drawable{
 	//winners and their values
 	private ArrayList<Color> winners;
 	private ArrayList<Integer> values = new ArrayList<Integer>();
+	//init flag for first run
 	private boolean inited = false;
+	//passed in reference to gamestate
 	private GameState gameState;
 	public ResultMenu(GameState gameState,GameBoard gameBoard) {
 		this.gameBoard = gameBoard;

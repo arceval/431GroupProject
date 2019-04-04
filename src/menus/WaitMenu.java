@@ -21,7 +21,8 @@ public class WaitMenu extends Drawable{
 
 
 		}catch(IOException e) {
-			System.out.println("Failed to open mainMenuImage located in res folder");
+			//for failure in opening image
+			System.out.println("Failed to open waitMenuImage located in res folder");
 			e.printStackTrace();
 		}
 	}

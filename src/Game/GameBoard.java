@@ -33,8 +33,11 @@ public class GameBoard extends Drawable implements MouseListener, MouseMotionLis
     private ArrayList<Shape> penHistory = new ArrayList<Shape>();
     //our player color
     private Color myColor;
+    //diameter, based on pen size
     private double diameter;
+    //passed in gamestate variable
 	private GameState GameState;
+	//Results list for winners
 	private LinkedHashMap<Color, Integer> results = new LinkedHashMap<Color,Integer>();
 	public GameBoard(GameState GameState) {
 		//set gamestate ref
@@ -57,6 +60,7 @@ public class GameBoard extends Drawable implements MouseListener, MouseMotionLis
 	}
 	@Override
 	public void render(Graphics2D g) {
+		//get original color
 		Color origColor = g.getColor();
 		//for each square in the gameboard
 		for(Square square : squareList) {
@@ -82,7 +86,9 @@ public class GameBoard extends Drawable implements MouseListener, MouseMotionLis
 	public void tick() {
 		//check if game is over
 		boolean gameIsNotOver = false;
+		//for every square
 		for(Square square : getSquareList()) {
+			//check if its occupied, if square is not occupied the game continues
 			if(!square.isOccupied()) {
 				gameIsNotOver = true;
 				break;
@@ -151,6 +157,7 @@ public class GameBoard extends Drawable implements MouseListener, MouseMotionLis
 		// TODO Auto-generated method stub
 		
 	}
+	//for detecting drawing
 	@Override
 	public void mousePressed(MouseEvent e) {
 		if(GameState.currentState.equals("GameBoard")) {
@@ -182,6 +189,7 @@ public class GameBoard extends Drawable implements MouseListener, MouseMotionLis
 		}
 		
 	}
+	//for dectecting when mouse was released
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		if(GameState.currentState.equals("GameBoard")) {
@@ -195,7 +203,9 @@ public class GameBoard extends Drawable implements MouseListener, MouseMotionLis
 					//minimizing factor for correction pixel area of points
 					float minFactor = Float.valueOf(GameState.penThickness)*0.014f;
 					System.out.println("Client: penHistory size: " + penHistory.size());
+					//amount covered by the player
 					int pixelCoverage = (int) (pi*radius*radius*(penHistory.size()*minFactor));
+					//amount needed to occupy the square
 					int requiredPixelAmount = (int)((Float.valueOf(GameState.territoryLimit)/100f)*getSquareList().get(currentSquareIndex).getPixelCount());
 					System.out.println("Client: pixelsCovered " + pixelCoverage + " Req Pixels: " + requiredPixelAmount);
 					//check coverage with amount needed
@@ -232,7 +242,9 @@ public class GameBoard extends Drawable implements MouseListener, MouseMotionLis
 			}
 		
 		}else {
+			//clear the history for the drawing
 			penHistory.clear();
+			//reset the current square selected
 			currentSquareIndex = -1;
 		}
 	}

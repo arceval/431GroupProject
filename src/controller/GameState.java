@@ -50,21 +50,23 @@ public class GameState extends Drawable{
 	//Size of Game Window
 	public final int width = 503;
 	public final int height = 525;
+	//frame 
 	private JFrame frame;
+	//window
 	public static Canvas window;
 	//create the keyboard
 	private Keyboard keyboard = new Keyboard(this);
 	//List of connections
 	public ArrayList<ConnectionEndpoint> connections = new ArrayList<ConnectionEndpoint>();
 
-	//Available States
+	//Objects for available states
 	private MainMenu mainMenu = new MainMenu();
 	private	GameBoard gameBoard = new GameBoard(this);
 	private HostMenu hostMenu;
 	private ClientMenu clientMenu;
 	private ResultMenu resultMenu;
 	private WaitMenu waitMenu = new WaitMenu();
-	//Available States
+	//Array holding names of available states
 	private ArrayList<String> availableStates;
 	//current state
 	public static String currentState = "MainMenu";
@@ -136,10 +138,11 @@ public class GameState extends Drawable{
 	}
 
 	
-	
+	//for canvas setting
 	public void setCanvas(Canvas canvas) {
 		this.window = canvas;
 	}
+	//init method to be called for first run
 	public void init() {
 		//set the canvas size
 		window.setSize(width, height);
@@ -173,9 +176,11 @@ public class GameState extends Drawable{
 		window.setVisible(true);
 
 	}
+	//Setting current state
 	public void setCurrentState(String s) {
 		currentState = s;
 	}
+	//getter for getting window
 	public Canvas getCanvas() {
 		return this.window;
 	}
@@ -183,7 +188,9 @@ public class GameState extends Drawable{
 	public ArrayList<Player> getPlayers(){
 		return this.players;
 	}
+	//render method that renders the screen
 	public void render(Graphics2D g) {
+		//switches render methods depending on current state
 		switchMethod("render", g);
 	}
 	
@@ -204,7 +211,7 @@ public class GameState extends Drawable{
 	}
 	
 	private void switchMethod(String action, Graphics2D g) {
-		//Render
+		//Renderer, switches based on currentState
 		if(action == "render") {
 			switch(currentState) {
 			
@@ -240,7 +247,7 @@ public class GameState extends Drawable{
 			
 		}
 		
-		//Tick
+		//Tick, switches tick based on currentState
 		
 		else if(action == "tick") {
 			switch(currentState) {
@@ -283,7 +290,7 @@ public class GameState extends Drawable{
 	public ServerSocket getServerSocket() {
 		return hostMenu.getServerSocket();
 	}
-
+	//for changing menus or enter gameboard
 	public void setGameState(String state) {
 		if(availableStates.contains(state)) {
 			currentState = state;

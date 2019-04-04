@@ -46,10 +46,15 @@ public class Message implements Serializable{
 		//Square info format: SquareID: PlayerID: Player status (Territory in percentage)
 	//For Both Client and Host
 	public Message(String timestamp, String playerID, int squareID,String action, String sourceIpAddress) {
+		//Timestamp
 		this.timeStamp = timestamp;
+		//player ID
 		this.playerID = playerID;
+		//Square ID
 		this.squareID = squareID;
+		//Action to be performed
 		this.action = action;
+		//Where the original sender
 		this.sourceIpAddress = sourceIpAddress;
 	}
 	//For debugging
@@ -58,8 +63,11 @@ public class Message implements Serializable{
 	}
 	//init message sent by host for syncing
 	public Message(String serverTime, ArrayList<Player> playerList, String hostAddress, int clientsPlayerID) {
+		//The current server time
 		this.serverTime = serverTime;
+		//a list holding the current players
 		this.playerList = playerList;
+		//the address of the current host
 		this.hostAddress = hostAddress;
 		//in sync with playerList array
 		this.clientsPlayerIDIndex = clientsPlayerID;
@@ -68,8 +76,11 @@ public class Message implements Serializable{
 	
 	//init message sent by host for syncing after player (not host) disconnects
 	public Message(String serverTime, ArrayList<Player> playerList, String hostAddress) {
+		//Server's current time
 		this.serverTime = serverTime;
+		//player list
 		this.playerList = playerList;
+		//host address
 		this.hostAddress = hostAddress;
 		//set sync flag
 		this.forSync = true;

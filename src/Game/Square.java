@@ -71,10 +71,11 @@ public class Square extends Drawable{
 		pixelCount = this.width*this.height;
 		square =  new Rectangle2D.Double(posX, posY, width, height);
 	}
-
+	//for checking if the square is in use
 	public boolean isLocked() {
 		return lock;
 	}
+	//for locking the square from others to use
 	public void setLock(boolean flag) {
 		this.lock = flag;
 	}
@@ -97,6 +98,7 @@ public class Square extends Drawable{
 			return false;
 		}
 	}
+	//rendering the square borders
 	public void drawSquare(Graphics2D g) {
 		//set painter color to black
 		g.setColor(Color.black);
@@ -144,12 +146,13 @@ public class Square extends Drawable{
 		if(occupied) {
 			g.setColor(occupiedPlayerColor);
 			g.fill(square);
-			//draw square boarder again
 		}
 		if(lock && !occupied){
 			g.setColor(Color.gray);
 			g.fill(square);
 		}
+		//draw square boarder again
+
 		drawSquare(g);
 	
 	}

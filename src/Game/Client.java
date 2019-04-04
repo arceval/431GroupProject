@@ -12,14 +12,16 @@ import menus.ClientMenu;
 import menus.HostMenu;
 
 public class Client {
+	//socket
 	private Socket socket;
+	//references to be passed in
 	private GameState GameState;
 	private GameBoard gameBoard;
 	public Client(GameState GameState, GameBoard gameBoard) {
 		this.GameState = GameState;
 		this.gameBoard = gameBoard;
 	}
-//remember to calculate delay
+//init to be called on first run
 	public void init() {
 		try {
 			System.out.println("Client: IP input: " + ClientMenu.ipInput);

@@ -16,3 +16,6 @@ GameBoard.java	In Game Folder
 Message.java	In Controller Folder
 ConnectionEndpoint.java	In Controller Folder
 GameState.java	In Game Folder
+
+To run the project go to jar folder and look at Procedure.txt file
+java -jar proj.jar (To run the proj)
